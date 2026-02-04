@@ -13,7 +13,7 @@ _Figure: Table of contents graphic from the paper._
 The core setup and source code are located in the [chemtrain repository](https://github.com/tummfm/chemtrain).
 
 This project depends on `chemtrain` with a CUDA-enabled JAX backend.  
-Installation is managed primarily through Conda,
+Installation is managed primarily through Conda.
 
 First, create the environment from the provided `environment.yml`:
 
