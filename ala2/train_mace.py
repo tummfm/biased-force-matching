@@ -291,21 +291,20 @@ def main() -> None:
         "CG_map": "heavyOnly",
         "type": "CG",  # "AT" or "CG"
         "PRNGKey_seed": 22,
-        "data_path": "/ala2/welltemp_6.npz",
+        "data_path": "openmm_unbiased_05fs.npz",
         "train_frac": 1.0,  
     }
     TRAIN_CONFIG = {
         "batch_size": 256,
-        "num_epochs": 401,
+        "num_epochs": 10,
         "init_lr": 0.001,
         "decay_rate": 0.9,  # Decay rate for learning rate
         "optimizer": "adam+decay",
     }
 
-    prefix = prefix + "_37a" if '37a' in MACE_CONFIG['data_path'] else prefix
 
     MACE_CONFIG['output_dir'] = (
-        f"model_out/pub_{prefix}_frac={MACE_CONFIG['train_frac']}_"
+        f"model_out/pub_frac={MACE_CONFIG['train_frac']}_"
         f"mol={MACE_CONFIG['mol']}_map={MACE_CONFIG['CG_map']}_"
         f"batch={TRAIN_CONFIG['batch_size']}_"
         f"hidden_irreps={MACE_CONFIG['hidden_irreps']}_"

@@ -1,0 +1,10 @@
+name: biased_fm
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip:
+      - git+https://github.com/tummfm/chemtrain.git@9cad115
+      - 'jax[cuda12]<=0.4.37'
+      - '-f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html'
+

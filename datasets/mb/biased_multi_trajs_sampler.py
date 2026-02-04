@@ -109,7 +109,7 @@ if __name__ == "__main__":
     #     height = 6.0
     #     return height * jnp.exp(-((y - y0)**2) / (2 * width**2))
 
-    steps = 10000000
+    steps = 10000
     bias_potential = remove_barrier
     sim = MullerBrownLangevinMD(dt=0.1, steps=steps, bias_potential=bias_potential)
     positions, velocities, forces_biased, energies = sim.run_multiple(n_traj=10)
@@ -118,9 +118,9 @@ if __name__ == "__main__":
     importance_weights = compute_importance_weights(positions, bias_potential, sim.kT)
     forces_unbiased = compute_unbiased_forces(positions)
     sim.save_multiple(f"biased_langevin_multi_trajs_{steps}_along_x.npz",
-                      positions=positions,
+                      position_x=positions[:,:, 0],
                     #   velocities=velocities,
                       energies=energies,
-                      forces_biased=forces_biased,
-                      forces_unbiased=forces_unbiased,
+                      force_x_biased=forces_biased[:,:, 0],
+                      force_x_unbiased=forces_unbiased[:,:, 0],
                       importance_weights=importance_weights)

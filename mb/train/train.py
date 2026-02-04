@@ -5,7 +5,7 @@ import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 import argparse
-from mb.train.train_utils import train_step, create_train_state, evaluate_loss
+from train_utils import train_step, create_train_state, evaluate_loss
 import numpy as onp
 import matplotlib.pyplot as plt
 
@@ -14,9 +14,9 @@ if len(sys.argv) > 1:
 
 os.environ["XLA_PYTHON_CLIENT_MEN_FRACTION"] = "0.95"
 
-from mb.models.mlp import MLP
-from mb.models.rbf_mlp import RBFMLP
-from mb.data.mb_data import get_mb_dataloader
+from models.mlp import MLP
+from models.rbf_mlp import RBFMLP
+from data.mb_data import get_mb_dataloader
 from collections import OrderedDict
 
 def get_default_config():
@@ -29,7 +29,7 @@ def get_default_config():
 
     return OrderedDict(
         dataset=OrderedDict(
-            num_samples=200000,
+            num_samples=2000,
         ),
         model=OrderedDict(
             features=[128, 128, 128, 128],
@@ -46,7 +46,8 @@ def get_default_config():
 def train():
     config = get_default_config()
     rng = jax.random.PRNGKey(0)
-    dataloader = get_mb_dataloader(batch_size=config["optimizer"]["batch"],
+    dataloader = get_mb_dataloader("biased_langevin_multi_trajs_10000_along_x.npz",
+                                   batch_size=config["optimizer"]["batch"],
                                    num_samples=config["dataset"]["num_samples"])
     model = RBFMLP(
         hidden_layers=config["model"]["features"],
@@ -64,6 +65,7 @@ def train():
         train_loss = evaluate_loss(state, dataloader)
         print(f"Epoch {epoch}/{config['optimizer']['epochs']}, Loss: {train_loss:.4f}")
 
+    # change to your desired path
     with open(f"unbiased_weights_retrain/test_model_biased_{config['dataset']['num_samples']}.pkl", "wb") as f:
         onp.save(f, state.params)
         
