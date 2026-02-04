@@ -1,9 +1,9 @@
 # biased-force-matching
 
 This repository contains supporting code accompanying the paper:
-> [**Enhanced Sampling for Efficient Training of Coarse Grained Machine Learning Potentials**](https://pubs.acs.org/doi/10.1021/acs.jctc.5c00996) 
+> [**Enhanced Sampling for Efficient Training of Coarse Grained Machine Learning Potentials**](https://pubs.acs.org/doi/full/10.1021/acs.jctc.5c01712) 
 > *Journal of Chemical Theory and Computation (JCTC)*, 2025  
-> DOI: [**10.1021/acs.jctc.5c01712**](https://pubs.acs.org/doi/10.1021/acs.jctc.5c00996)
+> DOI: [**10.1021/acs.jctc.5c01712**](https://pubs.acs.org/doi/full/10.1021/acs.jctc.5c01712)
 
 ![TOC figure](toc.png)  
 _Figure: Table of contents graphic from the paper._
